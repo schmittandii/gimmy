@@ -2,7 +2,7 @@ import Image from "next/image"
 import webde from "../public/web.svg"
 import webmo from "../public/web-de.jpeg"
 
-import screenshot1 from "../public/Screenshot1.png"
+import screenshot1 from "../public/screenshot1.png"
 import screenshot2 from "../public/Screenshot2.png"
 import screenshot3 from "../public/Screenshot3.png"
 import screenshot4 from "../public/Screenshot4.png"
