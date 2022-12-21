@@ -6,7 +6,7 @@ type Props = {
 
 export default function WebFooter({src}: Props) {
   return (
-    <div className="w-full">
+    <div className="w-full cursor-pointer">
           <Image
            src={src}
            alt="screenshot1"

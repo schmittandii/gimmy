@@ -6,7 +6,7 @@ type Props = {
 
 export default function Advert({src}: Props) {
   return (
-    <div className="w-full px-2 mt-7 mb-14">
+    <div className="w-full px-2 mt-7 mb-14 cursor-pointer">
           <Image
            src={src}
            alt="screenshot1"
