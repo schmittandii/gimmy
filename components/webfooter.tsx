@@ -12,6 +12,7 @@ export default function WebFooter({src}: Props) {
            alt="screenshot1"
            height={1200}
            width={1200}
+           className="w-full"
           />
           </div>
   )

